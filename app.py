@@ -128,7 +128,11 @@ def get_triangles():
     return triangles[:MAX_TRIANGLES]
 
 
-TRIANGLES = get_triangles()
+try:
+    TRIANGLES = get_triangles()
+except Exception as e:
+    print("Triangle loading failed:", e)
+    TRIANGLES = []
 
 SYMBOLS = set()
 
