@@ -78,7 +78,13 @@ def get_triangles():
     }
 
     url = "https://api.binance.com/api/v3/exchangeInfo"
-    data = requests.get(url, timeout=10).json()
+    response = requests.get(url, timeout=10)
+    data = response.json()
+
+    if "symbols" not in data:
+        print("Binance API failed:", data)
+        return []
+
     symbols = data["symbols"]
 
     symbol_names = set()
